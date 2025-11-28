@@ -5,7 +5,7 @@
 # Configurable parameters
 # -------------------------
 CLUSTER_NAME=${1:-"<your-cluster-name>"}     # Default: replace with your cluster name
-REGION=${2:-"ap-south-1"}                   # Default: Mumbai
+REGION=${2:-"us-east-1"}                   # Default: N. Virginia
 KUBECONFIG_FILE=${3:-"$HOME/.kube/config"}  # Default kubeconfig location
 
 # -------------------------
