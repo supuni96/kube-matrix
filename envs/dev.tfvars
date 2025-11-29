@@ -1,32 +1,33 @@
-project                         = "km"
-environment                     = "dev"
-region                          = "us-east-1"
-region_short                    = "use1"
-az_count                        = "2"
-az1                             = "use1b"
-az2                             = "use1a"
+project     = "km"
+environment = "dev"
+region      = "us-east-1"
 
-# VPC settings
-component                       = "vpc"
-vpc_cidr                        = "10.10.0.0/16"
-public_subnet_cidrs             = ["10.10.1.0/24","10.10.2.0/24"]
-private_subnet_cidrs            = ["10.10.101.0/24","10.10.102.0/24"]
+# VPC
+vpc_cidr             = "10.10.0.0/16"
+public_subnet_cidrs  = ["10.10.1.0/24","10.10.2.0/24"]
+private_subnet_cidrs = ["10.10.101.0/24","10.10.102.0/24"]
+az_count             = 2
+enable_nat_per_az    = false
+access_cidr          = "34.229.141.205/32"
 
-# EC2 
-instance_type                   = "t3.large"
-ssh_public_key                  = "~/.ssh/id_rsa.pub"
-ec2_admin_username              = "ec2-user"
-admin_password                  = "DevSecurePassword123!"
+# EKS sizing
+eks_cluster_version     = "1.29"
+node_group_desired_size = 2
+node_group_min_size     = 1
+node_group_max_size     = 5
+node_instance_type      = "t3.medium"
 
-# Database (Aurora MySQL)
-db_master_username              = "mysqladmin"
-db_master_password              = "DevSecureDBPassword123!"
-db_master_password_ssm_key      = "/km/dev/db/master_password"
-db_name                         = "km_dev"
-
-
+# Aurora
+aurora_engine_version = "8.0.mysql_aurora.3.08.2"
+aurora_serverless_v2_scaling_min = 0.5
+aurora_serverless_v2_scaling_max = 4
+aurora_backup_retention_days = 7
+db_instance_class = "db.t3.medium"
 
 
-
-
-
+tags = {
+  Project     = "km"
+  Owner       = "kmprojectteam"
+  ManagedBy   = "Terraform"
+  Environment = "dev"
+}
